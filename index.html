@@ -87,6 +87,14 @@
     </section>
   </main>
 
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <script>
+    window.TrackJS && TrackJS.install({
+      token: "c79a402a3b8041de97d041c26a0f513d"
+      // for more configuration options, see https://docs.trackjs.com
+    });
+  </script>
+
   <script>
     let form = document.querySelector('form');
     form.addEventListener('submit', e => {
@@ -102,6 +110,83 @@
 
     // Start your code here
     // You may move this JS to another file if you wish
+    function buttonPress(i, func) {
+      errorBtns[i].addEventListener('click', func);
+    }
+
+    buttonPress(0, function() {
+      console.log('console.log()');
+    })
+    buttonPress(1, function() {
+      console.error('console.error()');
+    })
+    buttonPress(2, function() {
+      console.count('console.count()');
+    })
+    buttonPress(3, function() {
+      console.warn('console.warn()');
+    })
+    buttonPress(4, function() {
+      console.assert(1 == 2, 'console.assert()');
+    })
+    buttonPress(5, function() {
+      console.clear();
+    })
+    buttonPress(6, function() {
+      console.dir(console);
+    })
+    buttonPress(7, function() {
+      console.dirxml(console);
+    })
+    buttonPress(8, function() {
+      console.group();
+    })
+    buttonPress(9, function() {
+      console.groupEnd();
+    })
+    buttonPress(10, function() {
+      console.table([1,2,3]);
+    })
+    buttonPress(11, function() {
+      console.time('timer');
+    })
+    buttonPress(12, function() {
+      console.timeEnd('timer');
+    })
+    buttonPress(13, function() {
+      console.trace();
+    })
+    buttonPress(14, function() {
+      this_variable_is_not_defined;
+    })
+
+    try {
+      JSON.parse("ffhggrafe;gkls");
+    } catch (err) {
+      console.error(err);
+    }
+
+    class CustomError extends Error {
+      constructor(message) {
+        super(message);
+        this.name = 'CustomError';
+      }
+    }
+    try {
+      let j = JSON.parse('{"a": 1}')
+      if (j.a == 1) {
+        throw new CustomError('test message');
+      }
+    } catch (err) {
+      console.error(err);
+    }
+
+    window.onerror = function(message, url, line) {
+      console.log(`${message}\nin ${url}:${line}`);
+      return true;
+    }
+
+    asdfas;
   </script>
 </body>
 
